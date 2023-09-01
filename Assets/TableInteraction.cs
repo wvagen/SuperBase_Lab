@@ -1,4 +1,5 @@
 using Postgrest;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
@@ -10,32 +11,70 @@ public class TableInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InsertTable();
+        //InsertTable();
+        CreateAccount();
     }
  
     async void InsertTable()
     {
-        Debug.Log("To Insert Data");
-        var parentModel = new AccountsData
+        var accountsModel = new AccountsData
         {
-            ParentName = "Souhaieb Mkadmi",
+            userID = "mouadh",
+            authenticationType = "Phone",
+            isPremium = "",
+            parentDate= DateTime.UtcNow,    
+            updated_at = DateTime.UtcNow,
         };
 
-        Debug.Log("Step 1");
+        Debug.Log(accountsModel.userID);
         var supabase = await MySupaBase.GetInstance();
-        Debug.Log("Step 2");
 
-        var result = await supabase.From<AccountsData>().Insert(parentModel, new QueryOptions { Returning = ReturnType.Representation });
-        Debug.Log(result.Model.ID);
+        var result = await supabase.From<AccountsData>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
+        Debug.Log("Success!");
+    }
+    async void CreateAccount()
+    {
+        var supabase = await MySupaBase.GetInstance();
 
-        var childModel = new User
+
+        var accountsModel = new Accounts
         {
-            name = "Nigger Mkadmi",
-            parentID = result.Model.ID,
+            userID = "NIGROU".ToLower(),
+            status = "active",
+            updated_at = DateTime.UtcNow,
         };
-        await supabase.From<User>().Insert(childModel);
 
-        Debug.Log("Data inserted");
+        var accountsResult = await supabase.From<Accounts>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
+        Debug.Log(accountsResult.ResponseMessage);
+
+
+        var accountsDataModel = new AccountsData
+        {
+            accountID = accountsResult.Model.id,
+            userID = accountsResult.Model.userID,
+            isPremium = "hspohttltp@=Gnthpsjvt5O^@:RN^MUaQZ\\__`58=?=89>@>9",
+            authenticationType = "Phone",
+            parentDate = DateTime.UtcNow,
+            parentName = "Mouadh Mkadmi",
+            parentGender = "Male",
+            updated_at = DateTime.UtcNow,
+        };
+
+        var accountsDataResult = await supabase.From<AccountsData>().Insert(accountsDataModel, new QueryOptions { Returning = ReturnType.Representation });
+        Debug.Log(accountsDataResult.ResponseMessage);
+
+        var accountChild = new Child
+        {
+            userID = accountsDataResult.Model.userID,
+            name = "Souhaieb",
+            surname = "Mkadmi",
+            birthDate = new DateTime(1996, 10, 07),
+            updated_at = DateTime.UtcNow,
+        };
+
+        var accountsChildResult = await supabase.From<Child>().Insert(accountChild, new QueryOptions { Returning = ReturnType.Representation });
+        Debug.Log(accountsChildResult.ResponseMessage);
+
     }
 
 }

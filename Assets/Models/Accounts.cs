@@ -5,7 +5,10 @@ using System;
 [Table("Accounts")]
 public class Accounts : BaseModel
 {
-    [PrimaryKey("userID")]
+    [PrimaryKey("id",false)]
+    public int id { get; set; }
+
+    [Column("userID")]
     public string userID { get; set; }
 
     [Column("status")]

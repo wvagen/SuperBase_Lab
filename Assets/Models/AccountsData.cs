@@ -5,7 +5,13 @@ using System;
 [Table("AccountsData")]
 public class AccountsData : BaseModel
 {
-    [PrimaryKey("userID")]
+    [PrimaryKey("id",false)]
+    public int id { get; set; }
+
+    [Column("accountID")]
+    public int accountID { get; set; }
+
+    [Column("userID")]
     public string userID { get; set; }
 
     [Column("isPremium")]
