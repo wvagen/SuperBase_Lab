@@ -18,7 +18,7 @@ public class TableInteraction : MonoBehaviour
         Debug.Log("To Insert Data");
         var parentModel = new AccountsData
         {
-            ParentName = "Taher Mkadmi",
+            ParentName = "Souhaieb Mkadmi",
         };
 
         Debug.Log("Step 1");
@@ -30,7 +30,7 @@ public class TableInteraction : MonoBehaviour
 
         var childModel = new User
         {
-            name = "Mouadh Mkadmi",
+            name = "Nigger Mkadmi",
             parentID = result.Model.ID,
         };
         await supabase.From<User>().Insert(childModel);

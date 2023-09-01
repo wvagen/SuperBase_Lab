@@ -7,8 +7,8 @@ public class MySupaBase
     {
         if (supabase == null)
         {
-            var url = "https://jangrkbsyjoatkkbeqyi.supabase.co";
-            var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imphbmdya2JzeWpvYXRra2JlcXlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIxODQ5MDEsImV4cCI6MjAwNzc2MDkwMX0.jFmEYMP3ZOqRrJEI2xsP-zkL3UTwDm9Ic464UFZw8nA";
+            var url = "http://localhost:54321";
+            var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0";
 
             var options = new Supabase.SupabaseOptions
             {
