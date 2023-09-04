@@ -3,47 +3,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using static Postgrest.QueryOptions;
 
-public class TableInteraction : MonoBehaviour
+public class Controller_Accounts : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Create()
     {
-        //InsertTable();
-        CreateAccount();
-    }
- 
-    async void InsertTable()
-    {
-        var accountsModel = new AccountsData
-        {
-            userID = "mouadh",
-            authenticationType = "Phone",
-            isPremium = "",
-            parentDate= DateTime.UtcNow,    
-            updated_at = DateTime.UtcNow,
-        };
-
-        Debug.Log(accountsModel.userID);
-        var supabase = await MySupaBase.GetInstance();
-
-        var result = await supabase.From<AccountsData>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
-        Debug.Log("Success!");
+        
     }
 
-    private static System.Random random = new System.Random();
-
-    public static string RandomString(int length)
-    {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        return new string(Enumerable.Repeat(chars, length)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
-    }
-
-    async void CreateAccount()
+    public async void CreateAccount()
     {
         var supabase = await MySupaBase.GetInstance();
 
@@ -56,7 +26,6 @@ public class TableInteraction : MonoBehaviour
 
         var accountsResult = await supabase.From<Accounts>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
         Debug.Log(accountsResult.ResponseMessage);
-
 
         var accountsDataModel = new AccountsData
         {
@@ -98,5 +67,4 @@ public class TableInteraction : MonoBehaviour
         Debug.Log(accountsChildResult1.ResponseMessage);
 
     }
-
 }

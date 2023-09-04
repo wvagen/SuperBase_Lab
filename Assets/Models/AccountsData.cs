@@ -34,4 +34,19 @@ public class AccountsData : BaseModel
 
     [Column("updated_at")]
     public DateTime updated_at { get; set; }
+
+    public AccountsData(int id, int accountID, string userID, string isPremium, string authenticationType,
+        DateTime memberShipCreationDate, DateTime parentDate, string parentGender, string parentName)
+    {
+        this.id = id;
+        this.accountID = accountID; 
+        this.userID = userID;   
+        this.isPremium = isPremium;
+        this.authenticationType = authenticationType;
+        this.memberShipCreationDate = memberShipCreationDate;
+        this.parentDate = parentDate;
+        this.parentGender = parentGender;
+        this.parentName = parentName;
+    }
+
 }

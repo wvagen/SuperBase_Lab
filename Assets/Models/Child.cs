@@ -56,4 +56,26 @@ public class Child : BaseModel
     [Column("updated_at")]
     public DateTime updated_at { get; set; }
 
+    public Child(int id, string userID, int childIndex, string achivementsUnlocked, DateTime birthDate,
+        string dictionnaryWordsUnlocked, string downBodyAccessoriesOwned, string downBodyAccessoriesWeared, 
+        string gender, string keysUnlocked,string levelReached,string name,string starsCollected, string surname, 
+        string upperBodyAccessoriesOwned,string upperBodyAccessoriesWeared)
+    {
+        this.id = id;
+        this.userID = userID;
+        this.childIndex = childIndex;
+        this.achivementsUnlocked = achivementsUnlocked;
+        this.birthDate = birthDate;
+        this.dictionnaryWordsUnlocked = dictionnaryWordsUnlocked;
+        this.downBodyAccessoriesOwned = downBodyAccessoriesOwned;
+        this.downBodyAccessoriesWeared= downBodyAccessoriesWeared;
+        this.gender = gender;
+        this.keysUnlocked = keysUnlocked;
+        this.levelReached = levelReached;
+        this.name = name;
+        this.starsCollected= starsCollected;
+        this.surname = surname;
+        this.upperBodyAccessoriesOwned = upperBodyAccessoriesOwned;
+        this.upperBodyAccessoriesWeared = upperBodyAccessoriesWeared;
+    }
 }
