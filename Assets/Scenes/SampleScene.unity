@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: User ID
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -577,9 +577,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SupaBase, Assembly-CSharp
-        m_MethodName: SignUp
+      - m_Target: {fileID: 1053725234}
+        m_TargetAssemblyTypeName: TableInteraction, Assembly-CSharp
+        m_MethodName: UploadNewUser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1288,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa15f07cc65034d4ba63b49595a6da7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userInputField: {fileID: 1095059995}
 --- !u!1 &1095059993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1302,7 @@ GameObject:
   - component: {fileID: 1095059996}
   - component: {fileID: 1095059995}
   m_Layer: 5
-  m_Name: PassField
+  m_Name: UsrIDField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1376,8 +1377,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 7
-  m_InputType: 2
+  m_ContentType: 0
+  m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0

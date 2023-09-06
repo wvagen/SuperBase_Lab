@@ -19,4 +19,12 @@ public class Model_Log : BaseModel
     [Column("logMsg")]
     public string logMsg { get; set; }
 
+    public enum LOG_TYPE
+    {
+        ERROR,
+        INFO,
+        SUCCESS
+    }
+
+
 }

@@ -3,7 +3,7 @@ using Postgrest.Models;
 using System;
 
 [Table("Accounts")]
-public class Model_Accounts : BaseModel
+public class Model_Accounts : Model_BaseModel
 {
     [PrimaryKey("id", false)]
     public int id { get; set; }
@@ -31,5 +31,6 @@ public class Model_Accounts : BaseModel
         this.userID = userID;
         this.status = status;
     }
+
 
 }

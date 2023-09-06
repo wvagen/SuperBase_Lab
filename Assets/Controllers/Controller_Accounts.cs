@@ -1,33 +1,17 @@
-using Postgrest;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using static Postgrest.QueryOptions;
 
-public class Controller_Accounts : MonoBehaviour
+public class Controller_Accounts
 {
+    static Controller_Accounts _instance;
+
+    public static Controller_Accounts Get_Instance()
+    {
+        if(_instance == null ) _instance= new Controller_Accounts();
+        return _instance;
+    }
 
     public async void CreateAccount(string userID)
     {
-        var supabase = await MySupaBase.GetInstance();
-
-        var accountsModel = new Model_Accounts
-        {
-            userID = userID,
-            status = "active",
-        };
-
-        try
-        {
-            var accountsResult = await supabase.From<Model_Accounts>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
-            Debug.Log(accountsResult.ResponseMessage);
-        }
-        catch(Exception ex) {
-            Debug.Log(ex.Message);
-        }
-
-
+        Model_Accounts accounts = new Model_Accounts(userID,"active");
+        await BaseSingleton.CRUD_Instance().Create(accounts, userID);
     }
 }

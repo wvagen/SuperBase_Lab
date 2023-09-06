@@ -6,14 +6,22 @@ using System.Linq;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using static Postgrest.QueryOptions;
+using TMPro;
 
 public class TableInteraction : MonoBehaviour
 {
+    public TMP_InputField userInputField;
+
     // Start is called before the first frame update
     void Start()
     {
         //InsertTable();
-        CreateAccount();
+        //CreateAccount();
+    }
+
+    public void UploadNewUser()
+    {
+        BaseSingleton.Accounts().CreateAccount(userInputField.text);
     }
  
     async void InsertTable()
