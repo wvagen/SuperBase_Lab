@@ -3,7 +3,7 @@ using Postgrest.Models;
 using System;
 
 [Table("AccountsData")]
-public class AccountsData : BaseModel
+public class Model_AccountsData : BaseModel
 {
     [PrimaryKey("id",false)]
     public int id { get; set; }
@@ -35,7 +35,8 @@ public class AccountsData : BaseModel
     [Column("updated_at")]
     public DateTime updated_at { get; set; }
 
-    public AccountsData(int id, int accountID, string userID, string isPremium, string authenticationType,
+    public Model_AccountsData() { }
+    public Model_AccountsData(int id, int accountID, string userID, string isPremium, string authenticationType,
         DateTime memberShipCreationDate, DateTime parentDate, string parentGender, string parentName)
     {
         this.id = id;

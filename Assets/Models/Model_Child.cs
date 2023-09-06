@@ -3,7 +3,7 @@ using Postgrest.Models;
 using System;
 
 [Table("Child")]
-public class Child : BaseModel
+public class Model_Child : BaseModel
 {
     [PrimaryKey("id", false)]
     public int id { get; set; }
@@ -56,7 +56,9 @@ public class Child : BaseModel
     [Column("updated_at")]
     public DateTime updated_at { get; set; }
 
-    public Child(int id, string userID, int childIndex, string achivementsUnlocked, DateTime birthDate,
+    public Model_Child() { }
+
+    public Model_Child(int id, string userID, int childIndex, string achivementsUnlocked, DateTime birthDate,
         string dictionnaryWordsUnlocked, string downBodyAccessoriesOwned, string downBodyAccessoriesWeared, 
         string gender, string keysUnlocked,string levelReached,string name,string starsCollected, string surname, 
         string upperBodyAccessoriesOwned,string upperBodyAccessoriesWeared)

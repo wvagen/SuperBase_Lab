@@ -18,7 +18,7 @@ public class TableInteraction : MonoBehaviour
  
     async void InsertTable()
     {
-        var accountsModel = new AccountsData
+        var accountsModel = new Model_AccountsData
         {
             userID = "mouadh",
             authenticationType = "Phone",
@@ -30,7 +30,7 @@ public class TableInteraction : MonoBehaviour
         Debug.Log(accountsModel.userID);
         var supabase = await MySupaBase.GetInstance();
 
-        var result = await supabase.From<AccountsData>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
+        var result = await supabase.From<Model_AccountsData>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
         Debug.Log("Success!");
     }
 
@@ -47,18 +47,18 @@ public class TableInteraction : MonoBehaviour
     {
         var supabase = await MySupaBase.GetInstance();
 
-        var accountsModel = new Accounts
+        var accountsModel = new Model_Accounts
         {
             userID = RandomString(5).ToLower(),
             status = "active",
             updated_at = DateTime.UtcNow,
         };
 
-        var accountsResult = await supabase.From<Accounts>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
+        var accountsResult = await supabase.From<Model_Accounts>().Insert(accountsModel, new QueryOptions { Returning = ReturnType.Representation });
         Debug.Log(accountsResult.ResponseMessage);
 
 
-        var accountsDataModel = new AccountsData
+        var accountsDataModel = new Model_AccountsData
         {
             accountID = accountsResult.Model.id,
             userID = accountsResult.Model.userID,
@@ -70,10 +70,10 @@ public class TableInteraction : MonoBehaviour
             updated_at = DateTime.UtcNow,
         };
 
-        var accountsDataResult = await supabase.From<AccountsData>().Insert(accountsDataModel, new QueryOptions { Returning = ReturnType.Representation });
+        var accountsDataResult = await supabase.From<Model_AccountsData>().Insert(accountsDataModel, new QueryOptions { Returning = ReturnType.Representation });
         Debug.Log(accountsDataResult.ResponseMessage);
 
-        var accountChild = new Child
+        var accountChild = new Model_Child
         {
             userID = accountsDataResult.Model.userID,
             name = "Souhaieb",
@@ -82,10 +82,10 @@ public class TableInteraction : MonoBehaviour
             updated_at = DateTime.UtcNow,
         };
 
-        var accountsChildResult = await supabase.From<Child>().Insert(accountChild, new QueryOptions { Returning = ReturnType.Representation });
+        var accountsChildResult = await supabase.From<Model_Child>().Insert(accountChild, new QueryOptions { Returning = ReturnType.Representation });
         Debug.Log(accountsChildResult.ResponseMessage);
 
-        var accountChild1 = new Child
+        var accountChild1 = new Model_Child
         {
             userID = accountsDataResult.Model.userID,
             name = "Roua",
@@ -94,7 +94,7 @@ public class TableInteraction : MonoBehaviour
             updated_at = DateTime.UtcNow,
         };
 
-        var accountsChildResult1 = await supabase.From<Child>().Insert(accountChild1, new QueryOptions { Returning = ReturnType.Representation });
+        var accountsChildResult1 = await supabase.From<Model_Child>().Insert(accountChild1, new QueryOptions { Returning = ReturnType.Representation });
         Debug.Log(accountsChildResult1.ResponseMessage);
 
     }
