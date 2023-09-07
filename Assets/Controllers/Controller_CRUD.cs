@@ -1,12 +1,10 @@
 using Postgrest;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using static Postgrest.QueryOptions;
 
-public class Controller_CRUD : Model_BaseModel
+public class Controller_CRUD
 {
     static Controller_CRUD instance;
 
@@ -33,14 +31,34 @@ public class Controller_CRUD : Model_BaseModel
 
         try
         {
-            var operationResult = await supabase.From<Model_BaseModel>().Insert(myModel, new QueryOptions { Returning = ReturnType.Representation });
+            switch (myModel.TableName)
+            {
+                case Constants_TableNames.ACCOUNTS:
+                    var accoountRes = await supabase.From<Model_Accounts>().Insert((Model_Accounts)myModel, new QueryOptions { Returning = ReturnType.Representation });
+                    Debug.Log(accoountRes.ResponseMessage);
+                    logTableInstance.logMsg = accoountRes.ResponseMessage.ToString();
+                    break;
 
-            Debug.Log(operationResult.ResponseMessage);
+                case Constants_TableNames.ACCOUNTS_DATA:
+                    var accoountResData = await supabase.From<Model_AccountsData>().Insert((Model_AccountsData)myModel, new QueryOptions { Returning = ReturnType.Representation });
+                    Debug.Log(accoountResData.ResponseMessage);
+                    logTableInstance.logMsg = accoountResData.ResponseMessage.ToString();
+                    break;
 
-            logTableInstance.logMsg = operationResult.ResponseMessage.ToString();
+                default:
+                    var operationResult = await supabase.From<Model_BaseModel>().Insert((Model_Accounts)myModel, new QueryOptions { Returning = ReturnType.Representation });
+                    Debug.Log(operationResult.ResponseMessage);
+                    logTableInstance.logMsg = operationResult.ResponseMessage.ToString();
+                    break;
+            }
+
+
             logTableInstance.logType = Model_Log.LOG_TYPE.SUCCESS.ToString();
 
-            await supabase.From<Model_Log>().Insert(logTableInstance, new QueryOptions { Returning = ReturnType.Representation });
+            await supabase.From<Model_Log>().Insert(logTableInstance, new QueryOptions
+            {
+                Returning = ReturnType.Representation
+            });
 
         }
 
@@ -54,7 +72,6 @@ public class Controller_CRUD : Model_BaseModel
             await supabase.From<Model_Log>().Insert(logTableInstance, new QueryOptions { Returning = ReturnType.Representation });
 
         }
-
     }
 
     //public async void Update(Model_BaseModel myModel)

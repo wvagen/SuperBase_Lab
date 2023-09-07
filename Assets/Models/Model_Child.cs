@@ -2,7 +2,7 @@ using Postgrest.Attributes;
 using Postgrest.Models;
 using System;
 
-[Table("Child")]
+[Table(Constants_TableNames.CHILD)]
 public class Model_Child : Model_BaseModel
 {
     [PrimaryKey("id", false)]

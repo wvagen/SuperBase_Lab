@@ -3,7 +3,7 @@ using Postgrest.Models;
 using System;
 
 
-[Table("Log")]
+[Table(Constants_TableNames.LOG)]
 public class Model_Log : BaseModel
 {
     [PrimaryKey("id", false)]

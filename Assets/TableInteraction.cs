@@ -7,6 +7,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using static Postgrest.QueryOptions;
 using TMPro;
+using Postgrest.Attributes;
 
 public class TableInteraction : MonoBehaviour
 {

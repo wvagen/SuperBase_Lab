@@ -2,7 +2,7 @@ using Postgrest.Attributes;
 using Postgrest.Models;
 using System;
 
-[Table("AccountsData")]
+[Table(Constants_TableNames.ACCOUNTS_DATA)]
 public class Model_AccountsData : Model_BaseModel
 {
     [PrimaryKey("id",false)]

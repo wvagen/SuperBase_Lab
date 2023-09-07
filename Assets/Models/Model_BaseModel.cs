@@ -1,8 +1,6 @@
-using Postgrest.Attributes;
 using Postgrest.Models;
+using Postgrest.Attributes;
 
-
-[Table("Test")]
 public class Model_BaseModel : BaseModel
 {
 
